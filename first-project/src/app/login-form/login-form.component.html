@@ -1,5 +1,6 @@
 <div>
   <label>Nazwa użytkownika:</label>
-  <input name="Nazwa użytkownika" [(ngModel)]="userName">
-  <button (click)="submitForm()"></button>
+  <input name="Nazwa użytkownika" [(ngModel)]="userName" (change)="userNameChanged()">
+  <label *ngIf="!userNameValid">{{message}}</label>
+  <button (click)="submitForm()">Submit</button>
 </div>

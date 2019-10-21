@@ -10,7 +10,8 @@ export class LoginFormComponent implements OnInit {
   userName:string = "";
   password:string = "";
   repetedPassword:string = "";
-
+  message:string;
+  userNameValid:boolean = true;
   constructor(private loginService:LoginService) { }
 
   ngOnInit() {
@@ -18,6 +19,12 @@ export class LoginFormComponent implements OnInit {
 
   submitForm(){
     this.loginService.addNewUser(this.userName,this.password);
+  }
+
+  
+  userNameChanged(){
+    this.message = "słaby login";
+    this.userNameValid = false;
   }
 
 }
