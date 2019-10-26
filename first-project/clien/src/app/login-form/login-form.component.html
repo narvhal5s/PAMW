@@ -12,13 +12,13 @@
               class="alert alert-danger">
 
             <div *ngIf="username.errors.required">
-             Imię jest wymagane.
+              Nazwa użytkownika jest wymagana.
             </div>
             <div *ngIf="username.errors.minlength">
-              Imię musi mieć długość minimum 6 znaków.
+              Nazwa użytkownika musi mieć długość minimum 6 znaków.
             </div>           
             <div *ngIf="username.errors?.uniqueUserName">
-                Ta nazwa użykowanika jest zajęcta.
+              Ta nazwa użykowanika jest zajęta.
             </div>
           </div>
         </div>
@@ -52,5 +52,4 @@
              [disabled]="userForm.invalid || username.pending">Submit</button>  
              <div *ngIf="username.pending">Trwa sprawdzanie nazwy użytkownika</div> 
   </form>
-
 </div>

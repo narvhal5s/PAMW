@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.0'
 
 services:
   example:
@@ -10,4 +10,5 @@ services:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - '4201:4200'
+        - '4200:4200'
+        - '49153:49153'
