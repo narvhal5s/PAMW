@@ -14,7 +14,7 @@ export class LoginService {
     })
   };
 
-  url = "server:8080"
+  url = "http://localhost:8080"
   constructor(private http:HttpClient) {}
 
   addNewUser(login:string, password:string){

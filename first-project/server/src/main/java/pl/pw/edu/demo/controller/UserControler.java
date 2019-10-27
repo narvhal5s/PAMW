@@ -12,6 +12,6 @@ public class UserControler {
 
     @GetMapping("/checkUsername")
     public ResponseEntity<Boolean> getUser() {
-        return new ResponseEntity<>(false, HttpStatus.OK);
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }
