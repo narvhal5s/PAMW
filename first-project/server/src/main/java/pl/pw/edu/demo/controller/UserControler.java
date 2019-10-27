@@ -5,10 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin()
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/auth")
-@Log
 public class UserControler {
 
     @GetMapping("/checkUsername")
