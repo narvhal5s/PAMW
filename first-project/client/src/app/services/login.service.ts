@@ -17,16 +17,17 @@ export class LoginService {
   url = "http://localhost:8080"
   constructor(private http:HttpClient) {}
 
-  addNewUser(login:string, password:string){
-    console.log(login);
-  }
-
-  checkUserName(userName:string){
-    return true;
+  addNewUser(username:String, password:String,email:String): Observable<String>{
+    var user ={
+      username,
+      password,
+      email
+    }
+    return this.http.post<any>(this.url+ "/api/auth/saveUser",user,this.httpOptions);
   }
 
   isNameTaken(username:String): Observable<boolean>{
-    return this.http.get<boolean>(this.url + "/api/auth/checkUsername",this.httpOptions);
+    return this.http.get<boolean>(this.url + "/api/auth/checkUsername/"+username,this.httpOptions);
   }
 
 }

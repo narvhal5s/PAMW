@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-success"
+      <button type="submit" class="btn btn-success" (click)="confirm()"
              [disabled]="userForm.invalid || username.pending">Submit</button>  
              <div *ngIf="username.pending">Trwa sprawdzanie nazwy użytkownika</div> 
   </form>

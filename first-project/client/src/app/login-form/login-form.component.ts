@@ -44,5 +44,6 @@ export class LoginFormComponent implements OnInit {
   get email() { return this.userForm.get('email'); }
 
   confirm(){
+    this.loginService.addNewUser(this.username.value,this.password.value,this.email.value).subscribe(x => console.log(x))
   }
 }
