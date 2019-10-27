@@ -14,3 +14,4 @@ W przeglądarce wpisujemy adres:
 localhost:3000
 
 Serwer zwraca dostępność nazwy użytkownika dla każdej poza "present".
+Zatwierdzenie formularza powoduje wysłanie go na serwer. W odpowiedzi przesyłane są wysłane dane i zostają wypisane w konsoli.
