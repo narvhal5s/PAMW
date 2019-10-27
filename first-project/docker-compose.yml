@@ -4,11 +4,16 @@ services:
   client:
     container_name: client
     build:
-      context: .
-      dockerfile: ./clien/Dockerfile
-    volumes:
-      - '.:/app'
-      - '/app/node_modules'
+      context: ./client/
+      dockerfile: Dockerfile
     ports:
-        - '4200:4200'
-        - '49153:49153'
+        - '3000:80'
+  server:
+    container_name: server
+    build:
+      context: ./server/
+      dockerfile: Dockerfile
+    volumes:
+      - '/tmp'
+    ports:
+      - '8080:8080'

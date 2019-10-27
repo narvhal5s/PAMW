@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable, empty, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+   httpOptions = {
+    headers: new HttpHeaders({ 
+      'Access-Control-Allow-Origin':'*'
+    })
+  };
 
-  constructor() {}
+  url = "server:8080"
+  constructor(private http:HttpClient) {}
 
   addNewUser(login:string, password:string){
     console.log(login);
@@ -18,8 +25,7 @@ export class LoginService {
   }
 
   isNameTaken(username:String): Observable<boolean>{
-    return of (false).pipe(delay(3000));
+    return this.http.get<boolean>(this.url + "/api/auth/checkUsername",this.httpOptions);
   }
-
 
 }
