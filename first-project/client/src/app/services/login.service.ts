@@ -8,8 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginService {
    httpOptions = {
-    headers: new HttpHeaders({ 
-      'Access-Control-Allow-Origin':'*'
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json'
     })
   };
 
