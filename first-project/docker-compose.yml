@@ -15,5 +15,19 @@ services:
       dockerfile: Dockerfile
     volumes:
       - '/tmp'
+    depends_on:
+      - postgres
+    links:
+      - postgres
     ports:
       - '8080:8080'
+
+  postgres:
+    container_name: postgres
+    build: 
+      context: ./server/postgres
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_PASSWORD=app
+    ports:
+      - "5432:5432"
