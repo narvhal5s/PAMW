@@ -1,14 +1,13 @@
 package pl.pw.edu.demo.dto;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
-public class SaveUserRequest {
+@Data
+public class SingUpRequest {
+
     @NotNull
     private String username;
 
