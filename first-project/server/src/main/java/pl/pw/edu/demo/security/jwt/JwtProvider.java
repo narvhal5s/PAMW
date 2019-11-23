@@ -12,13 +12,12 @@ public class JwtProvider {
 
     private String jwtSecret = "super_sekretny_sekret";
 
-    private int jwtExpiration = 88856;
+    private int jwtExpiration = 300000;
 
     public String generateJwtToken(Authentication authentication) {
 
-
         return Jwts.builder().setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpiration + 300000))
+                .setExpiration(new Date((new Date()).getTime() + jwtExpiration ))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }

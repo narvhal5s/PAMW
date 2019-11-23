@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class SingInRequest {
+public class SignInRequest {
     @NotNull
     private String username;
 

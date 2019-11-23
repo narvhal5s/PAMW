@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class SingUpRequest {
+public class SignUpRequest {
 
     @NotNull
     private String username;
