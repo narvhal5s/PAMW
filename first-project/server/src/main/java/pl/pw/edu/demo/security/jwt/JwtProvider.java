@@ -18,7 +18,7 @@ public class JwtProvider {
 
     private String jwtSecret = "super_sekretny_sekret";
 
-    private int jwtExpiration = 300000;
+    private int jwtExpiration = 300000000;
 
     public String generateJwtToken(Authentication authentication) {
 

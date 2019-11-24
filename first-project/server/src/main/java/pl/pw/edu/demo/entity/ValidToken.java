@@ -9,7 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "expired_tokens")
+@Table(name = "tokens")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

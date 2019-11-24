@@ -1,5 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-<app-login-form></app-login-form>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <app-login-form></app-login-form>
+        <button class="btn btn-success" type="submit" routerLink="/pdf/upload">
+            Załaduj plik
+          </button>
+          <button class="btn btn-success" type="submit" routerLink="/pdf/download">
+              Pobierz plik
+            </button>
+    </nav>
+    <div>
+    </div>
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
