@@ -12,6 +12,7 @@ public class JwtResponse {
     private String token;
     private String type = "Bearer";
     private String username;
+    private Long expired;
     private Collection<? extends GrantedAuthority> authorities;
 
     public JwtResponse(String accessToken, String username) {

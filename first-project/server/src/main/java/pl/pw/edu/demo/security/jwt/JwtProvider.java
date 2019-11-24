@@ -1,14 +1,20 @@
 package pl.pw.edu.demo.security.jwt;
 
 import io.jsonwebtoken.*;
+import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import pl.pw.edu.demo.services.ValidTokensService;
 
 import java.util.Date;
 
-
+@Log
 @Component
 public class JwtProvider {
+
+    @Autowired
+    ValidTokensService tokensService;
 
     private String jwtSecret = "super_sekretny_sekret";
 
@@ -16,7 +22,7 @@ public class JwtProvider {
 
     public String generateJwtToken(Authentication authentication) {
 
-        return Jwts.builder().setIssuedAt(new Date())
+        return Jwts.builder().setSubject(authentication.getName()).setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpiration ))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
@@ -25,7 +31,17 @@ public class JwtProvider {
     public Boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
-            return true;
+            if(getTokenExpiredDate(authToken).getTime() <= new Date().getTime()) {
+                log.info("Token przestał być ważny");
+                return false;
+            }
+            if(tokensService.isTokenExist(authToken)) {
+                log.info("Token istnieje");
+                return true;
+            }else{
+                log.info("Token nie istnieje, użytkownik wylogował się wcześniej");
+                return false;
+            }
         } catch (SignatureException e) {
 
         } catch (MalformedJwtException e) {
@@ -33,14 +49,23 @@ public class JwtProvider {
         } catch (UnsupportedJwtException e) {
 
         } catch (IllegalArgumentException e) {
+
         }
 
         return false;
+
+
     }
 
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
                 .getBody().getSubject();
+    }
+
+    public Date getTokenExpiredDate(String token){
+        return  Jwts.parser().setSigningKey(jwtSecret)
+                .parseClaimsJws(token).getBody()
+                .getExpiration();
     }
 }

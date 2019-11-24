@@ -27,11 +27,11 @@ public class UserService implements UserDetailsService {
     }
 
     public Optional<User> findByUsername(String username) {
-       return userRepository.findByUsername(username);
+       return userRepository.getUserByUsername(username);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username).get();
+        return userRepository.getUserByUsername(username).get();
     }
 }

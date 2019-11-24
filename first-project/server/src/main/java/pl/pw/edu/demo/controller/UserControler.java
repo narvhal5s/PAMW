@@ -14,8 +14,11 @@ import pl.pw.edu.demo.dto.SignInRequest;
 import pl.pw.edu.demo.dto.SignUpRequest;
 import pl.pw.edu.demo.entity.User;
 import pl.pw.edu.demo.security.jwt.JwtProvider;
+import pl.pw.edu.demo.services.ValidTokensService;
 import pl.pw.edu.demo.services.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Log
@@ -31,6 +34,9 @@ public class UserControler {
     UserService userService;
 
     @Autowired
+    ValidTokensService tokensService;
+
+    @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
@@ -38,7 +44,7 @@ public class UserControler {
 
     @PostMapping("/signup")
     public ResponseEntity<?> singUpUser(@Valid @RequestBody SignUpRequest request){
-        log.info("Request for siging up new user " + request.getUsername());
+        log.info("Request for sign up new user " + request.getUsername());
 
         User user = new User(request.getUsername(),passwordEncoder.encode(request.getPassword()),request.getEmail());
 
@@ -49,16 +55,32 @@ public class UserControler {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody SignInRequest loginRequest) {
-        log.info("impra jest tu: " + loginRequest.getPassword());
+        log.info("Request for sign in user: " + loginRequest.getUsername());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
-        log.info("impra jest tu: " + loginRequest.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        log.info("impra jest tu: " + loginRequest.getPassword());
         String jwt = jwtProvider.generateJwtToken(authentication);
+        tokensService.addToken(jwt);
         return ResponseEntity.ok(new JwtResponse(jwt, loginRequest.getUsername()));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser( @RequestBody JwtResponse request ){
+        String token = request.getToken();
+
+        log.info("Token to logout" + token);
+
+        tokensService.deleteToken(token);
+
+        return ResponseEntity.ok("deleted");
+    }
+
+    @GetMapping("/checkUsername/{username}")
+    public ResponseEntity<Boolean> getUser(@PathVariable String username) {
+        if(username.equals("present")){
+            return new ResponseEntity<>(true,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(false, HttpStatus.OK);
     }
 
 

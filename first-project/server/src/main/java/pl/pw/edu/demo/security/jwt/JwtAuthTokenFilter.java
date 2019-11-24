@@ -31,20 +31,20 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
         log.info(httpServletRequest.toString());
         try {
             String jwt = getJwt(httpServletRequest);
+            log.info("Current processed jwt: " + jwt);
             if (jwt != null && tokenProvider.validateJwtToken(jwt)) {
+                log.info("Debug validind info");
                 String username = tokenProvider.getUserNameFromJwtToken(jwt);
-                Optional<User> user = userService.findByUsername(username);
-                if(!user.isPresent()){
-                    return;
-                }
-                User userG = user.get();
+//                if(!user.isPresent()){
+//                    throw Us
+//
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        "admin", userG);
+                         username,null,null);
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
-            logger.error("Can NOT set user authentication -> Message: {}", e);
+            logger.error("Autoryzacja nie powiodła się: ", e);
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
