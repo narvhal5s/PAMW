@@ -4,5 +4,5 @@ setup:
                   as: DATABASE
 build:
         docker:
-                web: first-project/client/Dokcerfile
+                client: first-project/client/Dokcerfile
                 server: first-project/server/Dockerfile
