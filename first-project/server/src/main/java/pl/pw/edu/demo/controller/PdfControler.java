@@ -41,7 +41,7 @@ public class PdfControler {
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
+                .path("/api/pdf/downloadFile/")
                 .path(fileName)
                 .toUriString();
         FileName fileN = new FileName(fileDownloadUri);

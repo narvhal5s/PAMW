@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<table class=\"table\" *ngIf=\"links; else loading\">\n        <thead>\n          <tr>\n            <th scope=\"col\">Plik</th>\n          </tr>\n        </thead>\n        <tbody *ngFor=\"let x of links\">\n          <tr (click)=\"download($event)\" >\n            <td>{{x.link}}</td>\n          </tr>\n        </tbody>\n      </table>\n      \n      <ng-template #loading>\n          Loading stuff...\n      </ng-template>");
+/* harmony default export */ __webpack_exports__["default"] = ("<table class=\"table\" *ngIf=\"links; else loading\">\n  <thead>\n    <tr>\n      <th scope=\"col\">Plik</th>\n    </tr>\n  </thead>\n  <tbody *ngFor=\"let x of links\">\n    <tr>\n      <td><button type=\"button\" fileSaver [method]=\"'GET'\" [fileName]=x [url]=x\n        [query]=\"{ pi: 1, name: 'demo' }\" >{{x}}</button>\n      </td>\n      </tr>\n  </tbody>\n</table>\n\n<ng-template #loading>\n  Loading stuff...\n</ng-template>");
 
 /***/ }),
 
@@ -425,17 +425,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _login_form_login_form_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login-form/login-form.component */ "./src/app/login-form/login-form.component.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
-/* harmony import */ var _signup_form_signup_form_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./signup-form/signup-form.component */ "./src/app/signup-form/signup-form.component.ts");
-/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/ngx-cookie-service.js");
-/* harmony import */ var _common_AuthInterceptor__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./common/AuthInterceptor */ "./src/app/common/AuthInterceptor.ts");
-/* harmony import */ var _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./upload-file/upload-file.component */ "./src/app/upload-file/upload-file.component.ts");
-/* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ng2-file-upload */ "./node_modules/ng2-file-upload/fesm2015/ng2-file-upload.js");
-/* harmony import */ var _download_file_download_file_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./download-file/download-file.component */ "./src/app/download-file/download-file.component.ts");
+/* harmony import */ var ngx_filesaver__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-filesaver */ "./node_modules/ngx-filesaver/fesm2015/ngx-filesaver.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _login_form_login_form_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login-form/login-form.component */ "./src/app/login-form/login-form.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _signup_form_signup_form_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./signup-form/signup-form.component */ "./src/app/signup-form/signup-form.component.ts");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/ngx-cookie-service.js");
+/* harmony import */ var _common_AuthInterceptor__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./common/AuthInterceptor */ "./src/app/common/AuthInterceptor.ts");
+/* harmony import */ var _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./upload-file/upload-file.component */ "./src/app/upload-file/upload-file.component.ts");
+/* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ng2-file-upload */ "./node_modules/ng2-file-upload/fesm2015/ng2-file-upload.js");
+/* harmony import */ var _download_file_download_file_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./download-file/download-file.component */ "./src/app/download-file/download-file.component.ts");
+
 
 
 
@@ -457,27 +459,28 @@ let AppModule = class AppModule {
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-            _login_form_login_form_component__WEBPACK_IMPORTED_MODULE_7__["LoginFormComponent"],
+            _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
+            _login_form_login_form_component__WEBPACK_IMPORTED_MODULE_8__["LoginFormComponent"],
             _common_username_validator_directive__WEBPACK_IMPORTED_MODULE_1__["UniqueUsernameValidatorDirective"],
-            _signup_form_signup_form_component__WEBPACK_IMPORTED_MODULE_10__["SignupFormComponent"],
-            _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_13__["UploadFileComponent"],
-            _download_file_download_file_component__WEBPACK_IMPORTED_MODULE_15__["DownloadFileComponent"]
+            _signup_form_signup_form_component__WEBPACK_IMPORTED_MODULE_11__["SignupFormComponent"],
+            _upload_file_upload_file_component__WEBPACK_IMPORTED_MODULE_14__["UploadFileComponent"],
+            _download_file_download_file_component__WEBPACK_IMPORTED_MODULE_16__["DownloadFileComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
-            _angular_common__WEBPACK_IMPORTED_MODULE_8__["CommonModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"],
-            ng2_file_upload__WEBPACK_IMPORTED_MODULE_14__["FileUploadModule"]
+            _angular_common__WEBPACK_IMPORTED_MODULE_9__["CommonModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"],
+            ng2_file_upload__WEBPACK_IMPORTED_MODULE_15__["FileUploadModule"],
+            ngx_filesaver__WEBPACK_IMPORTED_MODULE_5__["FileSaverModule"]
         ],
         providers: [
-            ngx_cookie_service__WEBPACK_IMPORTED_MODULE_11__["CookieService"],
-            _common_AuthInterceptor__WEBPACK_IMPORTED_MODULE_12__["httpInterceptorProviders"]
+            ngx_cookie_service__WEBPACK_IMPORTED_MODULE_12__["CookieService"],
+            _common_AuthInterceptor__WEBPACK_IMPORTED_MODULE_13__["httpInterceptorProviders"]
         ],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
     })
 ], AppModule);
 
@@ -665,25 +668,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _services_pdf_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../services/pdf.service */ "./src/app/services/pdf.service.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
+
 
 
 
 let DownloadFileComponent = class DownloadFileComponent {
-    constructor(pdfService) {
+    constructor(pdfService, sanitizer) {
         this.pdfService = pdfService;
+        this.sanitizer = sanitizer;
     }
     ngOnInit() {
         this.pdfService.getFilesLinks().subscribe(data => {
-            this.links = data;
+            this.links = data.filesLinks;
             console.log(this.links);
         });
     }
-    download() {
-        console.log("save");
-    }
 };
 DownloadFileComponent.ctorParameters = () => [
-    { type: _services_pdf_service__WEBPACK_IMPORTED_MODULE_1__["PdfService"] }
+    { type: _services_pdf_service__WEBPACK_IMPORTED_MODULE_1__["PdfService"] },
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["DomSanitizer"] }
 ];
 DownloadFileComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -765,7 +769,6 @@ let LoginFormComponent = class LoginFormComponent {
     }
     logout() {
         this.authService.signOut().subscribe(data => {
-            console.log(data);
             this.authService.deleteCookies();
             window.location.reload();
         }, error => {
@@ -911,6 +914,9 @@ let PdfService = class PdfService {
     }
     getFilesLinks() {
         return this.http.get(this.url + "/file", this.httpOptions);
+    }
+    downloadFile(link) {
+        return this.http.get(link);
     }
 };
 PdfService.ctorParameters = () => [

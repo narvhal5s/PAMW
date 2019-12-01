@@ -2,7 +2,7 @@ import { UniqueUsernameValidatorDirective } from './common/username-validator.di
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule , } from '@angular/forms';
-
+import { FileSaverModule, FileSaverService } from 'ngx-filesaver';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -31,7 +31,8 @@ import { DownloadFileComponent } from './download-file/download-file.component';
     ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
-    FileUploadModule
+    FileUploadModule,
+    FileSaverModule
   ],
   providers: [
     CookieService,

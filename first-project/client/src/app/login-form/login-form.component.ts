@@ -49,7 +49,6 @@ export class LoginFormComponent implements OnInit {
   }
   logout() {
     this.authService.signOut().subscribe(data =>{
-      console.log(data);
       this.authService.deleteCookies();
       window.location.reload();
     },

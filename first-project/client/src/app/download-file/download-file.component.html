@@ -1,16 +1,18 @@
 <table class="table" *ngIf="links; else loading">
-        <thead>
-          <tr>
-            <th scope="col">Plik</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let x of links">
-          <tr (click)="download($event)" >
-            <td>{{x.link}}</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <ng-template #loading>
-          Loading stuff...
-      </ng-template>
+  <thead>
+    <tr>
+      <th scope="col">Plik</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let x of links">
+    <tr>
+      <td><button type="button" fileSaver [method]="'GET'" [fileName]=x [url]=x
+        [query]="{ pi: 1, name: 'demo' }" >{{x}}</button>
+      </td>
+      </tr>
+  </tbody>
+</table>
+
+<ng-template #loading>
+  Loading stuff...
+</ng-template>

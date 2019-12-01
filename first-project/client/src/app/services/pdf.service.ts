@@ -1,6 +1,7 @@
+import { AllFilesResponse } from './../common/AllFilesResponse';
 import { Link } from './../common/Link';
 import { FileRequest } from './../common/FileRequest';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginForm } from '../common/LoginForm';
 import { Observable } from 'rxjs';
@@ -33,8 +34,12 @@ export class PdfService {
      )
    }
    
-   getFilesLinks(): Observable<Link[]>{
-     return this.http.get<Link[]>(this.url + "/file", this.httpOptions);
+   getFilesLinks(): Observable<AllFilesResponse>{
+     return this.http.get<AllFilesResponse>(this.url + "/file", this.httpOptions);
+   }
+
+   downloadFile(link:string){
+     return this.http.get<Response>(link)
    }
 
 }
